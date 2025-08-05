@@ -2,13 +2,13 @@ import numpy as np
 
 ### Function for decomposing signal into brain wave frequency bands ###
 
-def decompose(fourier_signal , sampling_rate , n_samples):
+def decompose(signal , sampling_rate , n_samples):
   #####
-  #input: fourier transformed eeg data , sampling rate , and number of samples
+  #input: eeg data , sampling rate , and number of samples
   #output: list containing eeg signal decomposed into the 5 brain wave frequency bands
 
+  fourier_signal = np.fft.fft(signal)
   frequencies = np.fft.fftfreq(n_samples , 1/sampling_rate)
-  print(frequencies.shape)
   nyquist_limit = sampling_rate / 2
 
   gamma = np.zeros((fourier_signal.shape) , dtype = complex)
